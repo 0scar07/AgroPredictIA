@@ -257,6 +257,7 @@ def create_parcela():
 # ══════════════════════════════════════════════════════════════════════════════
 # SERVIR PÁGINAS
 # ══════════════════════════════════════════════════════════════════════════════
+
 @app.route("/")
 def index():
     return app.send_static_file("index.html")
@@ -264,6 +265,8 @@ def index():
 @app.route("/app")
 def app_page():
     return app.send_static_file("app.html")
+
+# ══════════════════════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":
     # init_db()
