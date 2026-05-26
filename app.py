@@ -2,8 +2,7 @@
 AgroPredict IA — Backend Flask
 Base de datos: PostgreSQL (Supabase)
 """
-
-from flask import Flask, request, jsonify, send_file, session, redirect
+from flask import Flask, request, jsonify, send_file, session, redirect, send_from_directory
 from flask_cors import CORS
 import os, io, csv, hashlib
 
@@ -267,11 +266,11 @@ def create_parcela():
 
 @app.route("/")
 def index():
-    return app.send_static_file("index.html")
+    return send_from_directory("static", "index.html")
 
 @app.route("/app")
 def app_page():
-    return app.send_static_file("app.html")
+    return send_from_directory("static", "app.html")
 
 # ══════════════════════════════════════════════════════════════════════════════
 
