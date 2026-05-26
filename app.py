@@ -267,10 +267,7 @@ def create_parcela():
 
 @app.route("/")
 def index():
-    return """
-    <h1>FUNCIONA 🚀</h1>
-    <p>AgroPredict IA funcionando correctamente en Render</p>
-    """
+    return app.send_static_file("index.html")
 
 @app.route("/app")
 def app_page():
