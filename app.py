@@ -3,7 +3,7 @@ AgroPredict IA — Backend Flask
 Base de datos: PostgreSQL (Supabase)
 """
 
-from flask import Flask, request, jsonify, send_file, session, redirect
+from flask import Flask, request, jsonify, send_file, session, redirect, send_from_directory
 from flask_cors import CORS
 import os, io, csv, hashlib
 
