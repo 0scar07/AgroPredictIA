@@ -261,9 +261,16 @@ def create_parcela():
 # SERVIR PÁGINAS
 # ══════════════════════════════════════════════════════════════════════════════
 
+# ══════════════════════════════════════════════════════════════════════════════
+# SERVIR PÁGINAS
+# ══════════════════════════════════════════════════════════════════════════════
+
 @app.route("/")
 def index():
-    return app.send_static_file("index.html")
+    return """
+    <h1>FUNCIONA 🚀</h1>
+    <p>AgroPredict IA funcionando correctamente en Render</p>
+    """
 
 @app.route("/app")
 def app_page():
