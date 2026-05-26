@@ -23,7 +23,7 @@ CORS(app, supports_credentials=True)
 # CONEXIÓN POSTGRESQL — SUPABASE
 # ══════════════════════════════════════════════════════════════════════════════
 
-DB_URL = "postgresql://postgres:AgroPredict2026!@db.vkygwebfnzrxbmpdzwti.supabase.co:5432/postgres"
+DB_URL = "postgresql://postgres:AgroPredict2026%21@db.vkygwebfnzrxbmpdzwti.supabase.co:5432/postgres"
 
 def get_db():
     conn = psycopg2.connect(DB_URL, cursor_factory=RealDictCursor)
