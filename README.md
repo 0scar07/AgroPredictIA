@@ -1,153 +1,300 @@
 # 🌱 AgroPredict IA — v2.0
 
-Plataforma de inteligencia artificial para predicción agronómica.
-Arquitectura separada: **HTML puro** (frontend) + **Python** (modelos, entrenamiento, gráficas, backend).
+Sistema inteligente de predicción agronómica desarrollado con **Flask + Machine Learning + HTML/CSS/JavaScript** para el análisis, monitoreo y entrenamiento de modelos aplicados a cultivos agrícolas.
 
 ---
 
-## 📁 Estructura del proyecto
+# 🚀 Características principales
 
-```
+✅ Predicciones agronómicas en tiempo real  
+✅ Entrenamiento de modelos personalizados con CSV  
+✅ Dashboard interactivo  
+✅ Registro e inicio de sesión  
+✅ Historial de predicciones  
+✅ Generación de gráficas automáticas  
+✅ Compatible con SQLite y PostgreSQL  
+✅ Arquitectura frontend + backend desacoplada  
+✅ Modo demo sin backend  
+
+---
+
+# 🧩 Tecnologías utilizadas
+
+## Frontend
+- HTML5
+- CSS3
+- JavaScript Vanilla
+
+## Backend
+- Python 3
+- Flask
+- Flask-CORS
+
+## Machine Learning
+- TensorFlow / Keras
+- Scikit-Learn
+- NumPy
+- Pandas
+
+## Visualización
+- Matplotlib
+- Seaborn
+
+## Base de datos
+- SQLite
+- PostgreSQL (Supabase)
+
+---
+
+# 📁 Estructura del proyecto
+
+```bash
 AgroPredictIA/
 │
-├── app.py              ← Backend Flask (auth, BD, rutas API)
-├── modelos.py          ← Gestión de modelos ML (Keras / sklearn)
-├── entrenamiento.py    ← Lógica de entrenamiento (R², MAE, RMSE)
-├── predicciones.py     ← Motor de inferencia (con modelo o heurístico)
-├── graficas.py         ← Gráficas matplotlib/seaborn → Base64 PNG
-├── requirements.txt    ← Dependencias Python
+├── app.py                 # Backend Flask principal
+├── modelos.py             # Gestión de modelos ML
+├── entrenamiento.py       # Entrenamiento y métricas
+├── predicciones.py        # Motor de inferencia
+├── graficas.py            # Generación de gráficas
+├── requirements.txt       # Dependencias
 │
 ├── static/
-│   ├── index.html      ← Login + Register
-│   └── app.html        ← Aplicación principal (solo HTML/CSS/JS)
+│   ├── index.html         # Login / Register
+│   └── app.html           # Dashboard principal
 │
-├── models/             ← Modelos entrenados guardados (auto-creado)
-└── agropredict.db      ← Base de datos SQLite (auto-creada)
+├── models/                # Modelos entrenados
+├── datasets/              # CSV agrícolas
+└── agropredict.db         # Base de datos SQLite
 ```
 
 ---
 
-## 🚀 Instalación y ejecución
+# ⚙️ Instalación
 
-### 1. Instalar dependencias base
-
-```bash
-pip install flask flask-cors numpy matplotlib seaborn
-```
-
-### 2. (Opcional) Instalar dependencias ML
+## 1️⃣ Clonar repositorio
 
 ```bash
-# Para redes neuronales
-pip install tensorflow
-
-# Para Random Forest y Gradient Boosting
-pip install scikit-learn joblib
+git clone https://github.com/0scar07/AgroPredictIA.git
+cd AgroPredictIA
 ```
 
-### 3. Ejecutar el servidor
+---
+
+## 2️⃣ Crear entorno virtual (Opcional)
+
+### Windows
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+### Linux / Mac
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+---
+
+## 3️⃣ Instalar dependencias
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# ▶️ Ejecutar proyecto
 
 ```bash
 python app.py
 ```
 
-### 4. Abrir en el navegador
+Servidor disponible en:
 
-```
+```bash
 http://localhost:5000
 ```
 
 ---
 
-## 🔐 Login y registro
+# 🔐 Sistema de autenticación
 
-- **Registro**: Crea una cuenta en `/` → "Registrarse"
-- **Login**: Inicia sesión con tu cuenta
-- **Demo**: Botón "Acceder con cuenta demo" (usuario: `demo@agropredict.co`, clave: `demo1234`)
-- **Base de datos**: SQLite (`agropredict.db`) — se crea automáticamente
+La plataforma incluye:
 
-### Tablas SQLite
-| Tabla | Descripción |
-|-------|-------------|
-| `usuarios` | Registro de usuarios (nombre, email, password hash SHA-256) |
-| `predicciones_log` | Historial de todas las predicciones generadas |
-| `parcelas` | Parcelas registradas por usuario |
-| `sensores_log` | Lecturas de sensores IoT por parcela |
+- Registro de usuarios
+- Inicio de sesión
+- Manejo de sesiones
+- Logout
+- Persistencia de usuarios en base de datos
 
 ---
 
-## 🧠 Módulos Python
+# 🧠 Machine Learning
 
-### `modelos.py` — ModelManager
-- Construye redes neuronales Keras (1-3 capas, dropout, activación configurable)
-- Construye modelos sklearn (Random Forest, Gradient Boosting)
-- Guarda/carga modelos desde disco (formato SavedModel o joblib)
-- Normalización min-max manual o con sklearn MinMaxScaler
+AgroPredict IA permite entrenar distintos modelos:
 
-### `entrenamiento.py` — TrainingEngine
-- Mapeo automático de columnas CSV a variables (temperatura, humedad, ndvi…)
-- Split train/test configurable
-- Métricas: **R²**, **MAE**, **RMSE**
-- Historial de pérdida por época (compatible con Keras callbacks)
-- Soporta: Red Neuronal, Random Forest, Gradient Boosting
-
-### `predicciones.py` — PredictionEngine
-- Usa modelos entrenados si están disponibles
-- Fallback a modelo **heurístico agronómico** calibrado
-- Predicción individual o por lote (`predecir_lote`)
-- Genera recomendaciones automáticas basadas en condiciones
-
-### `graficas.py` — GraficaEngine
-- 7 tipos de gráficas matplotlib/seaborn
-- Retorna PNG en Base64 para renderizar en el frontend
-- Paleta corporativa verde AgroPredict
+| Modelo | Estado |
+|--------|--------|
+| Redes Neuronales | ✅ |
+| Random Forest | ✅ |
+| Gradient Boosting | ✅ |
+| Modelos heurísticos | ✅ |
 
 ---
 
-## 📡 API Endpoints
+# 📊 Métricas utilizadas
 
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| POST | `/api/register` | Registro de usuario |
-| POST | `/api/login` | Login |
+El sistema calcula automáticamente:
+
+- R² Score
+- MAE
+- RMSE
+- Loss History
+- Accuracy estimada
+
+---
+
+# 📈 Funcionalidades IA
+
+## Predicción agrícola
+
+El sistema puede estimar:
+
+- Rendimiento esperado
+- Riesgo de plagas
+- Estrés hídrico
+- Nivel NDVI
+- Confianza del modelo
+
+---
+
+## Entrenamiento con CSV
+
+Se pueden cargar datasets personalizados con variables como:
+
+```text
+temperatura
+humedad
+lluvia_mm
+ndvi
+humedad_suelo
+rendimiento
+```
+
+---
+
+# 📡 API Endpoints
+
+| Método | Endpoint | Función |
+|---|---|---|
+| POST | `/api/register` | Registrar usuario |
+| POST | `/api/login` | Iniciar sesión |
 | POST | `/api/logout` | Cerrar sesión |
-| GET  | `/api/me` | Info del usuario actual |
-| POST | `/api/predecir` | Generar predicción (guarda en BD) |
-| GET  | `/api/historial-predicciones` | Historial del usuario |
-| POST | `/api/entrenar` | Entrenar modelos con datos CSV |
-| POST | `/api/grafica/<tipo>` | Generar gráfica matplotlib |
-| GET  | `/api/csv-variables` | Lista de CSV disponibles |
-| GET  | `/api/descargar-csv/<variable>` | Descargar CSV específico |
+| GET | `/api/me` | Datos del usuario |
+| POST | `/api/predecir` | Generar predicción |
+| POST | `/api/entrenar` | Entrenar modelo |
+| GET | `/api/historial-predicciones` | Historial |
+| POST | `/api/grafica/<tipo>` | Generar gráfica |
+| GET | `/api/parcelas` | Obtener parcelas |
+| POST | `/api/parcelas` | Crear parcela |
 
 ---
 
-## 📥 Datasets CSV disponibles
+# 🗄️ Base de datos
 
-| Variable | Columnas | Descripción |
-|----------|----------|-------------|
-| `temperatura` | fecha, parcela, cultivo, temperatura, humedad, lluvia_mm | Datos climáticos por parcela |
-| `humedad` | fecha, parcela, cultivo, humedad, lluvia_mm, humedad_suelo | Humedad ambiental y del suelo |
-| `rendimiento` | fecha, parcela, cultivo, temperatura, humedad, ndvi, rendimiento_t_ha | Rendimiento por cultivo |
-| `plaga` | fecha, parcela, cultivo, temperatura, humedad, lluvia_mm, humedad_suelo, riesgo_plaga_pct, alerta | Riesgo de plaga |
-| `ndvi` | fecha, parcela, cultivo, ndvi, ndvi_interpretacion, cobertura_nubosa_pct | Índice vegetal Sentinel-2 |
-| `lluvia_mm` | fecha, zona, departamento, lluvia_mm, dias_lluvia, intensidad | Precipitación por zonas |
+## SQLite (local)
 
----
+Archivo:
 
-## 🔧 Modo demo (sin backend)
+```bash
+agropredict.db
+```
 
-La app funciona **sin Flask** con funcionalidad reducida:
-- Login/registro simulado (redirige a `app.html` directamente)
-- Predicciones con valores simulados
-- Entrenamiento con historial de pérdida simulado
-- Gráficas muestran mensaje de "backend no disponible"
-- Descarga CSV muestra alerta explicativa
+## PostgreSQL (Supabase)
 
-Para funcionalidad completa, ejecuta `python app.py`.
+Compatible mediante:
+
+```python
+psycopg2
+```
 
 ---
 
-## 👥 Créditos
+# 📥 Datasets incluidos
 
-**Proyecto AgroPredict IA** — Baena, Barrios, Llanos, Lázaro, Montes  
-Universidad — Entrega 2 IA · Colombia 2025
+| Dataset | Descripción |
+|---|---|
+| temperatura.csv | Variables climáticas |
+| humedad.csv | Humedad ambiental |
+| rendimiento.csv | Producción agrícola |
+| ndvi.csv | Índices de vegetación |
+| plaga.csv | Riesgo de plagas |
+| lluvia_mm.csv | Precipitación |
+
+---
+
+# 🖥️ Frontend
+
+El frontend fue construido completamente en:
+
+- HTML puro
+- CSS puro
+- JavaScript Vanilla
+
+Sin frameworks externos.
+
+---
+
+# 🔧 Modo Demo
+
+La aplicación puede funcionar sin backend:
+
+✅ Login simulado  
+✅ Navegación funcional  
+✅ Predicciones mock  
+✅ Entrenamiento visual  
+✅ Dashboard demostrativo  
+
+---
+
+# ☁️ Deploy
+
+Compatible con:
+
+- Render
+- Railway
+- Azure
+- Vercel (Frontend)
+- Supabase
+
+---
+
+# ⚠️ Notas importantes
+
+- Algunos modelos requieren TensorFlow instalado
+- El primer entrenamiento puede tardar varios segundos
+- En Render Free puede existir cold start
+- El proyecto puede ejecutarse completamente en local
+
+---
+
+# 👨‍💻 Autores
+
+### Proyecto AgroPredict IA
+
+Desarrollado por:
+
+- Baena
+- Barrios
+- Llanos
+- Lázaro
+- Montes
+
+📍 Colombia — 2025
+
+---
+
+# 🔗 Repositorio oficial
+
+https://github.com/0scar07/AgroPredictIA
