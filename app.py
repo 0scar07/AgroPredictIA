@@ -260,14 +260,13 @@ def create_parcela():
 
 @app.route("/")
 def index():
-    return "FUNCIONA 🚀"
+    return send_from_directory("static", "index.html")
 
 @app.route("/app")
 def app_page():
     if not session.get("user_id"):
         return redirect("/")
-    return app.send_static_file("app.html")
-
+    return send_from_directory("static", "app.html")
 # ══════════════════════════════════════════════════════════════════════════════
 
 # TEMPORALMENTE DESACTIVADO PARA DEBUG
