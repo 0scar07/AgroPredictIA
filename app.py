@@ -257,21 +257,15 @@ def create_parcela():
 # ══════════════════════════════════════════════════════════════════════════════
 # SERVIR PÁGINAS
 # ══════════════════════════════════════════════════════════════════════════════
-
 @app.route("/")
 def index():
     return app.send_static_file("index.html")
 
 @app.route("/app")
 def app_page():
-    if not session.get("user_id"):
-        return redirect("/")
     return app.send_static_file("app.html")
-# ══════════════════════════════════════════════════════════════════════════════
-
-# TEMPORALMENTE DESACTIVADO PARA DEBUG
-# init_db()
 
 if __name__ == "__main__":
+    # init_db()
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
